@@ -12,8 +12,8 @@ public class CountryInformationServiceImpl implements CountryInformationService 
 	@Override
 	public CountryInformation getCountryInformation(String countryCode) {
 		RestTemplate restTemplate = new RestTemplate();
-		CountryInformation countryInformation = restTemplate.getForObject("https://api.ip2country.info/ip?",
-				CountryInformation.class);
+		CountryInformation countryInformation = restTemplate
+				.getForObject("http://restcountries.eu/rest/v1/alpha/" + countryCode.toLowerCase(), CountryInformation.class);
 		return countryInformation;
 	}
 

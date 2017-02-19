@@ -1,5 +1,8 @@
 package com.mercadolibre.controller.response;
 
+import java.time.LocalTime;
+import java.util.List;
+
 public class IpResponse {
 	
 	private String ip;
@@ -7,6 +10,22 @@ public class IpResponse {
 	private String countryCode;
 	
 	private String pais;
+	
+	private List<String> languages;
+	
+	private List<String> currencies;
+	
+	private String hora;
+	
+	private double distance;
+
+	public List<String> getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(List<String> languages) {
+		this.languages = languages;
+	}
 
 	public String getPais() {
 		return pais;
@@ -30,6 +49,30 @@ public class IpResponse {
 
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+
+	public List<String> getCurrencies() {
+		return currencies;
+	}
+
+	public void setCurrencies(List<String> currencies) {
+		this.currencies = currencies;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
 	}
 
 
