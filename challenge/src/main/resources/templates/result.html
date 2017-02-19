@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Handling Form Submission</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Result</h1>
+	<p th:text="'Ip: ' + ${ipResponse.ip}" />
+	<p th:text="'Pais: ' + ${ipResponse.pais}" />
+	<p th:text="'ISO Code: ' + ${ipResponse.countryCode}" />
+	<p th:text="'Hora: ' + ${ipResponse.hora}" />
+	<p th:text="'Distancia estimada: ' + ${ipResponse.distance} + ' kms'" />
+	<p th:each="language : ${ipResponse.languages}"
+		th:text="'Idiomas: ' + ${language}" />
+	<p th:each="coin : ${ipResponse.coins}"
+		th:text="'Moneda: ' + ${coin.currency} + ' cotization: 1 '+ ${coin.currency} + '=' + ${coin.cotizacion} + ' USD'" />
+	<a href="/greeting">Submit another message</a>
+</body>
+</html>

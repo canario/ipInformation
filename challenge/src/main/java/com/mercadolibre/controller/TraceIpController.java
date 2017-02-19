@@ -18,16 +18,14 @@ public class TraceIpController {
 	@Autowired
 	private TraceIpManager traceIpmanager;
 	
-	
 	@RequestMapping( method = RequestMethod.GET)
 	public ResponseEntity<IpResponse> getLoan(@RequestParam(required = true) String ip) {
 
 		IpResponse ipResponse = traceIpmanager.traceIp(ip);
 		ipResponse.setIp(ip);
 		
-		
 		return new ResponseEntity<IpResponse>(ipResponse, HttpStatus.OK);
-
 	}
+
 
 }

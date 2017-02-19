@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<body onload='document.form1.text1.focus()'>
+<form name="form1" action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+    <div class="form-group">
+        <label class="col-xs-3 control-label">IP address</label>
+        <div class="col-xs-7">
+            <input type="text" class="form-control" name="ip" />
+        </div>
+    </div>
+    <p><input type="submit" value="Submit" onclick="ValidateIPaddress(document.form1.text1)" /> <input type="reset" value="Reset" /></p>
+</form>
+
+</body>
+</html>
+<script type="text/javascript">
+<!--
+
+//-->
+function ValidateIPaddress(ipaddress) 
+{
+ if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(myForm.emailAddr.value))
+  {
+    return (true)
+  }
+alert("You have entered an invalid IP address!")
+return (false)
+}
+</script>

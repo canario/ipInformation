@@ -3,10 +3,14 @@ package com.mercadolibre.manager.impl;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.mercadolibre.controller.response.Coin;
 import com.mercadolibre.controller.response.CountryInformation;
 import com.mercadolibre.controller.response.Ip2Country;
 import com.mercadolibre.controller.response.IpResponse;
@@ -28,31 +32,43 @@ public class TraceIpManagerImpl implements TraceIpManager {
 	@Autowired
 	private PriceService priceService;
 
+	private static final Pattern PATTERN = Pattern
+			.compile("^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
+
+	private boolean validate(final String ip) {
+		return PATTERN.matcher(ip).matches();
+	}
+
 	@Override
 	public IpResponse traceIp(String ip) {
-
-		Ip2Country ip2Country = ip2CountryService.getIpInformation(ip);
 		IpResponse ipResponse = new IpResponse();
-		ipResponse.setIp(ip);
-		ipResponse.setCountryCode(ip2Country.getCountryCode());
-		ipResponse.setPais(ip2Country.getCountryName());
-		CountryInformation countryInformation = countryInformationService
-				.getCountryInformation(ip2Country.getCountryCode());
-		ipResponse.setPais(countryInformation.getTranslations().get("es"));
-		ipResponse.setLanguages(countryInformation.getLanguages());
-		ipResponse.setCurrencies(countryInformation.getCurrencies());
-		LocalTime currentTime = LocalTime.now(ZoneId.of(countryInformation.getTimezones().get(0)));
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-		ipResponse.setHora(currentTime.format(dateTimeFormatter));
-		double distance = distance(countryInformation.getLatlng().get(0), -34, countryInformation.getLatlng().get(1),
-				-64);
-		ipResponse.setDistance(distance);
-		Price price = priceService.getPrices();
-		ipResponse.setCotizacion(price.getRates().get(countryInformation.getCurrencies().get(0)));
+		if (validate(ip)) {
+			Ip2Country ip2Country = ip2CountryService.getIpInformation(ip);
+			
+			ipResponse.setIp(ip);
+			ipResponse.setCountryCode(ip2Country.getCountryCode());
+			ipResponse.setPais(ip2Country.getCountryName());
+			CountryInformation countryInformation = countryInformationService
+					.getCountryInformation(ip2Country.getCountryCode());
+			ipResponse.setPais(countryInformation.getTranslations().get("es"));
+			ipResponse.setLanguages(countryInformation.getLanguages());
+			LocalTime currentTime = LocalTime.now(ZoneId.of(countryInformation.getTimezones().get(0)));
+			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+			ipResponse.setHora(currentTime.format(dateTimeFormatter));
+			double distance = distance(countryInformation.getLatlng().get(0), -34,
+					countryInformation.getLatlng().get(1), -64);
+			ipResponse.setDistance(distance);
+			List<Coin> coins = new ArrayList<>();
+			for (String currency : countryInformation.getCurrencies()) {
+				Price price = priceService.getPrices(currency);
+				coins.add(new Coin(currency, price.getRates().get("USD")));
+			}
+			ipResponse.setCoins(coins);
+		}
 		return ipResponse;
 	}
 
-	public double distance(double lat1, double lat2, double lon1, double lon2) {
+	private double distance(double lat1, double lat2, double lon1, double lon2) {
 
 		final int R = 6371; // Radius of the earth
 

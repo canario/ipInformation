@@ -1,5 +1,6 @@
 package com.mercadolibre.controller.response;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IpResponse {
@@ -12,13 +13,11 @@ public class IpResponse {
 	
 	private List<String> languages;
 	
-	private List<String> currencies;
-	
 	private String hora;
 	
 	private double distance;
 	
-	private Double cotizacion;
+	private List<Coin> coins = new ArrayList<>();
 
 	public List<String> getLanguages() {
 		return languages;
@@ -52,14 +51,6 @@ public class IpResponse {
 		this.ip = ip;
 	}
 
-	public List<String> getCurrencies() {
-		return currencies;
-	}
-
-	public void setCurrencies(List<String> currencies) {
-		this.currencies = currencies;
-	}
-
 	public String getHora() {
 		return hora;
 	}
@@ -76,13 +67,12 @@ public class IpResponse {
 		this.distance = distance;
 	}
 
-	public Double getCotizacion() {
-		return cotizacion;
+	public List<Coin> getCoins() {
+		return coins;
 	}
 
-	public void setCotizacion(Double cotizacion) {
-		this.cotizacion = cotizacion;
+	public void setCoins(List<Coin> coins) {
+		this.coins = coins;
 	}
-
 
 }
