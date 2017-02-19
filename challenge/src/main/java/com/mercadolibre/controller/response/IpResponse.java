@@ -1,6 +1,5 @@
 package com.mercadolibre.controller.response;
 
-import java.time.LocalTime;
 import java.util.List;
 
 public class IpResponse {
@@ -18,6 +17,8 @@ public class IpResponse {
 	private String hora;
 	
 	private double distance;
+	
+	private Double cotizacion;
 
 	public List<String> getLanguages() {
 		return languages;
@@ -73,6 +74,14 @@ public class IpResponse {
 
 	public void setDistance(double distance) {
 		this.distance = distance;
+	}
+
+	public Double getCotizacion() {
+		return cotizacion;
+	}
+
+	public void setCotizacion(Double cotizacion) {
+		this.cotizacion = cotizacion;
 	}
 
 

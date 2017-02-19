@@ -5,16 +5,18 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.mercadolibre.controller.response.CountryInformation;
 import com.mercadolibre.controller.response.Ip2Country;
 import com.mercadolibre.controller.response.IpResponse;
+import com.mercadolibre.controller.response.Price;
 import com.mercadolibre.manager.TraceIpManager;
 import com.mercadolibre.service.CountryInformationService;
 import com.mercadolibre.service.Ip2CountryService;
+import com.mercadolibre.service.PriceService;
 
-@Service
+@Component
 public class TraceIpManagerImpl implements TraceIpManager {
 
 	@Autowired
@@ -22,6 +24,9 @@ public class TraceIpManagerImpl implements TraceIpManager {
 
 	@Autowired
 	private CountryInformationService countryInformationService;
+
+	@Autowired
+	private PriceService priceService;
 
 	@Override
 	public IpResponse traceIp(String ip) {
@@ -42,6 +47,8 @@ public class TraceIpManagerImpl implements TraceIpManager {
 		double distance = distance(countryInformation.getLatlng().get(0), -34, countryInformation.getLatlng().get(1),
 				-64);
 		ipResponse.setDistance(distance);
+		Price price = priceService.getPrices();
+		ipResponse.setCotizacion(price.getRates().get(countryInformation.getCurrencies().get(0)));
 		return ipResponse;
 	}
 
