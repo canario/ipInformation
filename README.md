@@ -8,6 +8,15 @@ Esta aplicación recibe una IP y devuelve:
 * Distancia estimada entre Buenos Aires y el país, en km.
 * Moneda local, y su cotización actual en dólares (si está disponible)
 
+Esta aplicación corre en el puerto 9991, que se puede cambiar en el archivo de propiedades application.yml
+
+El form para ingresar la IP seria (suponiendo que se levanta en forma local y no se cambia el puerto):
+
+* http://localhost:9991
+
+El servicio rest seria:
+
+* http://localhost:9991/traceIp?ip=5.6.7.8
 
 ## Pendientes
 
