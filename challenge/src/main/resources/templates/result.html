@@ -7,9 +7,9 @@
 <body>
 	<h1>Result</h1>
 	<p th:text="'Ip: ' + ${ipResponse.ip}" />
-	<p th:text="'Pais: ' + ${ipResponse.pais}" />
+	<p th:text="'Pais: ' + ${ipResponse.country}" />
 	<p th:text="'ISO Code: ' + ${ipResponse.countryCode}" />
-	<p th:text="'Hora: ' + ${ipResponse.hora}" />
+	<p th:text="'Hora: ' + ${ipResponse.time}" />
 	<p th:text="'Distancia estimada: ' + ${#numbers.formatDecimal(ipResponse.distance,1,2)} + ' kms'" />
 	<p th:each="language : ${ipResponse.languages}"
 		th:text="'Idiomas: ' + ${language}" />

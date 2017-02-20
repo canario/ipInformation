@@ -54,14 +54,13 @@ public class TraceIpManagerImpl implements TraceIpManager {
 			
 			ipResponse.setIp(ip);
 			ipResponse.setCountryCode(ip2Country.getCountryCode());
-			ipResponse.setPais(ip2Country.getCountryName());
 			CountryInformation countryInformation = countryInformationService
 					.getCountryInformation(ip2Country.getCountryCode());
-			ipResponse.setPais(countryInformation.getTranslations().get("es"));
+			ipResponse.setCountry(countryInformation.getTranslations().get("es"));
 			ipResponse.setLanguages(countryInformation.getLanguages());
 			LocalTime currentTime = LocalTime.now(ZoneId.of(countryInformation.getTimezones().get(0)));
 			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-			ipResponse.setHora(currentTime.format(dateTimeFormatter));
+			ipResponse.setTime(currentTime.format(dateTimeFormatter));
 			double distance = distance(countryInformation.getLatlng().get(0), latitude,
 					countryInformation.getLatlng().get(1), longitud);
 			ipResponse.setDistance(distance);

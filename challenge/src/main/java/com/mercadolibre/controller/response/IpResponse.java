@@ -9,11 +9,11 @@ public class IpResponse {
 	
 	private String countryCode;
 	
-	private String pais;
+	private String country;
 	
 	private List<String> languages;
 	
-	private String hora;
+	private String time;
 	
 	private double distance;
 	
@@ -25,14 +25,6 @@ public class IpResponse {
 
 	public void setLanguages(List<String> languages) {
 		this.languages = languages;
-	}
-
-	public String getPais() {
-		return pais;
-	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
 	}
 
 	public String getCountryCode() {
@@ -51,14 +43,6 @@ public class IpResponse {
 		this.ip = ip;
 	}
 
-	public String getHora() {
-		return hora;
-	}
-
-	public void setHora(String hora) {
-		this.hora = hora;
-	}
-
 	public double getDistance() {
 		return distance;
 	}
@@ -73,6 +57,22 @@ public class IpResponse {
 
 	public void setCoins(List<Coin> coins) {
 		this.coins = coins;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 }
