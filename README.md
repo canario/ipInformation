@@ -13,10 +13,10 @@ Esta aplicación recibe una IP y devuelve:
 
 Quedaron pendientes para realizar:
 
-### Agregar cache para evitar llamadas innecesarias a los servicios
-### Agregar nas unit tests con mas casos y tests de integracion
-### Mejorar el manejo de error en caso de que la IP no sea valida
-### Mejorar la UI si es necesario
+* Agregar cache para evitar llamadas innecesarias a los servicios
+* Agregar nas unit tests con mas casos y tests de integracion
+* Mejorar el manejo de error en caso de que la IP no sea valida
+* Mejorar la UI si es necesario
 
 ## Asunciones
 
