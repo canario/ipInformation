@@ -10,11 +10,11 @@
 	<p th:text="'Pais: ' + ${ipResponse.pais}" />
 	<p th:text="'ISO Code: ' + ${ipResponse.countryCode}" />
 	<p th:text="'Hora: ' + ${ipResponse.hora}" />
-	<p th:text="'Distancia estimada: ' + ${ipResponse.distance} + ' kms'" />
+	<p th:text="'Distancia estimada: ' + ${#numbers.formatDecimal(ipResponse.distance,1,2)} + ' kms'" />
 	<p th:each="language : ${ipResponse.languages}"
 		th:text="'Idiomas: ' + ${language}" />
 	<p th:each="coin : ${ipResponse.coins}"
 		th:text="'Moneda: ' + ${coin.currency} + ' cotization: 1 '+ ${coin.currency} + '=' + ${coin.cotizacion} + ' USD'" />
-	<a href="/greeting">Submit another message</a>
+	<a href="/greeting">Submit another ip</a>
 </body>
 </html>

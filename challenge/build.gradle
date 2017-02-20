@@ -51,8 +51,5 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-devtools")
     
-	compile group: 'javax.servlet', name: 'jstl', version: '1.2'
-	compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.0.M15'
-	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

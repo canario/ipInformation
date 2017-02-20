@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.mercadolibre.controller.response.Greeting;
+import com.mercadolibre.controller.response.Ip;
 import com.mercadolibre.controller.response.IpResponse;
 import com.mercadolibre.manager.TraceIpManager;
 
@@ -19,14 +19,14 @@ public class HomeController {
 
 	@GetMapping(value = { "/greeting", "/" })
 	public String greetingForm(Model model) {
-		model.addAttribute("greeting", new Greeting());
-		return "greeting";
+		model.addAttribute("ip", new Ip());
+		return "home";
 	}
 
-	@PostMapping("/greeting")
-	public String greetingSubmit(@ModelAttribute Greeting greeting, Model model) {
-		IpResponse ipResponse = traceIpmanager.traceIp(greeting.getIp());
-		ipResponse.setIp(greeting.getIp());
+	@PostMapping("/")
+	public String greetingSubmit(@ModelAttribute Ip ip, Model model) {
+		IpResponse ipResponse = traceIpmanager.traceIp(ip.getIp());
+		ipResponse.setIp(ip.getIp());
 		model.addAttribute("ipResponse", ipResponse);
 		return "result";
 	}
