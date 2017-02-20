@@ -2,11 +2,11 @@
 
 Esta aplicación recibe una IP y devuelve:
 
-### El nombre y código ISO del país
-### Los idiomas oficiales del país
-### Hora(s) actual(es) en el país (si el país cubre más de una zona horaria, mostrar todas)
-### Distancia estimada entre Buenos Aires y el país, en km.
-### Moneda local, y su cotización actual en dólares (si está disponible)
+* El nombre y código ISO del país
+* Los idiomas oficiales del país
+* Hora(s) actual(es) en el país (si el país cubre más de una zona horaria, mostrar todas)
+* Distancia estimada entre Buenos Aires y el país, en km.
+* Moneda local, y su cotización actual en dólares (si está disponible)
 
 
 ## Pendientes
