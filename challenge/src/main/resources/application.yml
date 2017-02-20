@@ -3,6 +3,8 @@ app:
   countryInformationUrl: http://restcountries.eu/rest/v1/alpha/ 
   ip2CountryUrl: https://api.ip2country.info/ip?
   priceUrl: http://api.fixer.io/latest?base=
+  latitude: -34
+  longitud: -64
 
 ---
 server:

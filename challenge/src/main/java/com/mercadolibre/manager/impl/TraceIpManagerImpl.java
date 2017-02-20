@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.mercadolibre.controller.response.Coin;
@@ -22,6 +23,12 @@ import com.mercadolibre.service.PriceService;
 
 @Component
 public class TraceIpManagerImpl implements TraceIpManager {
+	
+	@Value("${app.latitude}")
+	private double latitude;
+	
+	@Value("${app.longitud}")
+	private double longitud;
 
 	@Autowired
 	private Ip2CountryService ip2CountryService;
@@ -55,8 +62,8 @@ public class TraceIpManagerImpl implements TraceIpManager {
 			LocalTime currentTime = LocalTime.now(ZoneId.of(countryInformation.getTimezones().get(0)));
 			DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 			ipResponse.setHora(currentTime.format(dateTimeFormatter));
-			double distance = distance(countryInformation.getLatlng().get(0), -34,
-					countryInformation.getLatlng().get(1), -64);
+			double distance = distance(countryInformation.getLatlng().get(0), latitude,
+					countryInformation.getLatlng().get(1), longitud);
 			ipResponse.setDistance(distance);
 			List<Coin> coins = new ArrayList<>();
 			for (String currency : countryInformation.getCurrencies()) {
