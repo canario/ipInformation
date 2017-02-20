@@ -37,4 +37,4 @@ Para crear la imagen de docker se debe correr el siguiente comando:
 
 ### ./gradlew build buildDocker
 
-El build va a fallar al intentar hacer el push de la imagen ya que no esta registrado en el registry.
+El build va a fallar al intentar hacer el push de la imagen ya que no esta registrado en el registry, sin embargo la imagen de docker se crea correctamente.
